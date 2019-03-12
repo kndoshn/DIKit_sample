@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		434275602237AD1F0067621A /* DIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4351F5C12237A5B2003BA415 /* DIKit.framework */; };
+		434275632237AF5A0067621A /* AppResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434275622237AF5A0067621A /* AppResolver.swift */; };
+		4342756C2237B6310067621A /* AppResolver.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4342756B2237B6310067621A /* AppResolver.generated.swift */; };
 		4351F5AF2237A435003BA415 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351F5AE2237A435003BA415 /* AppDelegate.swift */; };
 		4351F5B12237A435003BA415 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351F5B02237A435003BA415 /* ViewController.swift */; };
 		4351F5B42237A435003BA415 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4351F5B22237A435003BA415 /* Main.storyboard */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		434275622237AF5A0067621A /* AppResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppResolver.swift; sourceTree = "<group>"; };
+		4342756B2237B6310067621A /* AppResolver.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppResolver.generated.swift; sourceTree = "<group>"; };
 		4351F5AB2237A435003BA415 /* DIKit_sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DIKit_sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4351F5AE2237A435003BA415 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4351F5B02237A435003BA415 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +63,8 @@
 			isa = PBXGroup;
 			children = (
 				4351F5AE2237A435003BA415 /* AppDelegate.swift */,
+				4342756B2237B6310067621A /* AppResolver.generated.swift */,
+				434275622237AF5A0067621A /* AppResolver.swift */,
 				4351F5B02237A435003BA415 /* ViewController.swift */,
 				4351F5B22237A435003BA415 /* Main.storyboard */,
 				4351F5B52237A436003BA415 /* Assets.xcassets */,
@@ -84,9 +90,10 @@
 			buildConfigurationList = 4351F5BD2237A436003BA415 /* Build configuration list for PBXNativeTarget "DIKit_sample" */;
 			buildPhases = (
 				4351F5A72237A435003BA415 /* Sources */,
+				434275642237B0D70067621A /* dikitgen */,
 				4351F5A82237A435003BA415 /* Frameworks */,
 				4351F5A92237A435003BA415 /* Resources */,
-				434275612237AD300067621A /* ShellScript */,
+				434275612237AD300067621A /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -144,7 +151,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		434275612237AD300067621A /* ShellScript */ = {
+		434275612237AD300067621A /* Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -154,6 +161,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/DIKit.framework",
 			);
+			name = Carthage;
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -162,6 +170,24 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
+		434275642237B0D70067621A /* dikitgen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = dikitgen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which dikitgen >/dev/null; then\ndikitgen ${SRCROOT}/DIKit_sample > ${SRCROOT}/DIKit_sample/AppResolver.generated.swift\nelse\necho \"warning: dikitgen not installed, download from https://github.com/ishkawa/DIKit\"\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -169,7 +195,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				434275632237AF5A0067621A /* AppResolver.swift in Sources */,
 				4351F5B12237A435003BA415 /* ViewController.swift in Sources */,
+				4342756C2237B6310067621A /* AppResolver.generated.swift in Sources */,
 				4351F5AF2237A435003BA415 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

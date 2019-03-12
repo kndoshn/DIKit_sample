@@ -1,9 +1,14 @@
 import UIKit
 import DIKit
 
+struct NestedMessage {
+    let message: String
+}
+
 final class ViewController: UIViewController, FactoryMethodInjectable {
     struct Dependency {
         let message: String
+        let nested: NestedMessage
     }
     
     static func makeInstance(dependency: Dependency) -> ViewController {
@@ -17,6 +22,6 @@ final class ViewController: UIViewController, FactoryMethodInjectable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("message:", dependency.message)
+        print(dependency.message, dependency.nested.message)
     }
 }
